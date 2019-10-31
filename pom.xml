@@ -35,7 +35,21 @@
             <artifactId>asm-commons</artifactId>
             <version>7.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.olivergondza</groupId>
+            <artifactId>maven-jdk-tools-wrapper</artifactId>
+            <version>0.1</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>jdk.tools</groupId>-->
+<!--            <artifactId>jdk.tools</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>1.6</version>-->
+<!--            <systemPath>${java.home}/../lib/tools.jar</systemPath>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -62,19 +76,6 @@
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.0.2</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addClasspath>true</addClasspath>
-                            </manifest>
-                            <manifestEntries>
-                                <Agent-Class>
-                                    com.andyxh.AgentMain
-                                </Agent-Class>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -90,7 +91,59 @@
                     <version>3.7.1</version>
                 </plugin>
 
+
+
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifestEntries>
+                            <Agent-Class>
+                                com.andyxh.AgentMain
+                            </Agent-Class>
+                            <Can-Redefine-Classes>
+                                true
+                            </Can-Redefine-Classes>
+                        </manifestEntries>
+                        <manifest>
+                            <mainClass>com.andyxh.JvmAttachMain</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+
+<!--                    <compilerArguments>-->
+<!--                        &lt;!&ndash; 是否输出所有的编译信息（包括类的加载等）&ndash;&gt;-->
+<!--                        &lt;!&ndash;<verbose />&ndash;&gt;-->
+<!--                        &lt;!&ndash; 解决maven命令编译报错，因为rt.jar 和jce.jar在jre的lib下面，不在jdk的lib下面，-->
+<!--                        导致maven找不到（java7以后会出现这个问题），将这2个jar包拷贝到jdk的lib下面估计也好使&ndash;&gt;-->
+<!--                        <bootclasspath>${java.home}\lib\dt.jar;${java.home}\lib\tools.jar</bootclasspath>-->
+<!--                    </compilerArguments>-->
+                </configuration>
+
+            </plugin>
+        </plugins>
     </build>
 </project>
