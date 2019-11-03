@@ -65,6 +65,6 @@ JDK 9 之后运行指定为:
 
 ## 帮助文档
 
-[j-lo-hotdeploy](https://www.ibm.com/developerworks/cn/java/j-lo-hotdeploy/index.html)
+[深入探索 Java 热部署](https://www.ibm.com/developerworks/cn/java/j-lo-hotdeploy/index.html)
 
-[j-lo-jse61](https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html)
+[Instrumentation 新功能](https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html)
