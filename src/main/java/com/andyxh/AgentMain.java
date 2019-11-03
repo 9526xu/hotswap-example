@@ -18,6 +18,7 @@ public class AgentMain {
 //                .getBytesFromFile(Transformer.classNumberReturns2));
 //        inst.redefineClasses(new ClassDefinition[] { def });
         // 从 agentArgs 获取外部参数
+        System.out.println("开始热更新代码");
         String path = agentArgs;
         try {
             RandomAccessFile f = new RandomAccessFile(path, "r");

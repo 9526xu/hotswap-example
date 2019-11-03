@@ -43,63 +43,25 @@
             <optional>true</optional>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>jdk.tools</groupId>-->
-<!--            <artifactId>jdk.tools</artifactId>-->
-<!--            <scope>system</scope>-->
-<!--            <version>1.6</version>-->
-<!--            <systemPath>${java.home}/../lib/tools.jar</systemPath>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>jdk.tools</groupId>-->
+        <!--            <artifactId>jdk.tools</artifactId>-->
+        <!--            <scope>system</scope>-->
+        <!--            <version>1.6</version>-->
+        <!--            <systemPath>${java.home}/../lib/tools.jar</systemPath>-->
+        <!--        </dependency>-->
     </dependencies>
 
     <build>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-            <plugins>
-                <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-                <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.7.1</version>
-                </plugin>
 
 
-
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
+                    <finalName>hotswap-jdk</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -134,13 +96,13 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
 
-<!--                    <compilerArguments>-->
-<!--                        &lt;!&ndash; 是否输出所有的编译信息（包括类的加载等）&ndash;&gt;-->
-<!--                        &lt;!&ndash;<verbose />&ndash;&gt;-->
-<!--                        &lt;!&ndash; 解决maven命令编译报错，因为rt.jar 和jce.jar在jre的lib下面，不在jdk的lib下面，-->
-<!--                        导致maven找不到（java7以后会出现这个问题），将这2个jar包拷贝到jdk的lib下面估计也好使&ndash;&gt;-->
-<!--                        <bootclasspath>${java.home}\lib\dt.jar;${java.home}\lib\tools.jar</bootclasspath>-->
-<!--                    </compilerArguments>-->
+                    <!--                    <compilerArguments>-->
+                    <!--                        &lt;!&ndash; 是否输出所有的编译信息（包括类的加载等）&ndash;&gt;-->
+                    <!--                        &lt;!&ndash;<verbose />&ndash;&gt;-->
+                    <!--                        &lt;!&ndash; 解决maven命令编译报错，因为rt.jar 和jce.jar在jre的lib下面，不在jdk的lib下面，-->
+                    <!--                        导致maven找不到（java7以后会出现这个问题），将这2个jar包拷贝到jdk的lib下面估计也好使&ndash;&gt;-->
+                    <!--                        <bootclasspath>${java.home}\lib\dt.jar;${java.home}\lib\tools.jar</bootclasspath>-->
+                    <!--                    </compilerArguments>-->
                 </configuration>
 
             </plugin>
